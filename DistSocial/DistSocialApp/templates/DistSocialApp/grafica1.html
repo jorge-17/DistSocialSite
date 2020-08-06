@@ -353,11 +353,11 @@
             hora = hora[0];
 
             AllData.push([
-                Date.UTC(parseInt(anio), parseInt(mes-1), parseInt(dia), parseInt(hora), parseInt(min), parseFloat(seg)),
+                Date.UTC(parseInt(anio), parseInt(mes - 1), parseInt(dia), parseInt(hora), parseInt(min), parseFloat(seg)),
                 parseFloat(val)
             ]);
         });
-        
+
         //console.log(data);
         Highcharts.chart('container', {
             chart: {
@@ -374,10 +374,13 @@
             xAxis: {
                 type: 'datetime',
                 dateTimeLabelFormats: { // don't display the dummy year
-                    month: '%e. %b',
-                    year: '%b'
+                    hour: '%I %p',
+                    minute: '%I:%M %p',
+                    second: '%I:%M:%S %p'
                 },
-                tickInterval: 10 * 30 * 24 * 3600 * 1000
+                title: {
+                    text: 'Tiempo'
+                }
             },
             yAxis: {
                 title: {

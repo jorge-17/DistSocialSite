@@ -37,9 +37,9 @@ def login(request):
 
 def grafica1(request):
     registros = Registros.objects.filter(status=True).only('valor', 'creado')
-    print(registros)
+    #print(registros)
     data = serializers.serialize("json", registros)
-    print(data)
+    #print(data)
     #data = json.dumps(data)
     #print(data)
     return render(request, 'DistSocialApp/grafica1.html', {'dataRegistros': data})
