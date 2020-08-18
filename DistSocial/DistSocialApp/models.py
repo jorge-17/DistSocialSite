@@ -62,9 +62,9 @@ class Registros(models.Model):
     id_Registro = models.AutoField(primary_key=True)
     status = models.BooleanField(null=True)
     id_CatCamara = models.ForeignKey(CatCamaras, on_delete=models.CASCADE)
-    valor = models.DecimalField(max_digits=5, decimal_places=5, null=True)
+    valor = models.DecimalField(max_digits=12, decimal_places=3, null=True)
     id_CatTipo = models.ForeignKey(CatTipos, on_delete=models.CASCADE)
-    creado = models.DateTimeField(default=timezone.now(), null=True)
+    creado = models.DateTimeField(default=timezone.now, null=True)
     nombre = models.CharField(max_length=255, null=True)
     def getDateValue(self):
         return self.valor, self.creado
