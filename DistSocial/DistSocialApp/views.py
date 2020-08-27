@@ -27,8 +27,10 @@ def login(request):
     userName = request.POST.get('userName')
     userPass = request.POST.get('userPass')
     userVal = CatUsuarios.objects.filter(usuario=userName, pw=userPass, id_CatOrganizacion=idOrg).exists()
+    FullNameUser = CatUsuarios.objects.get(usuario=userName)
+    data = { 'userExist' : userVal , 'fullnameUser' : FullNameUser.nombre }
     #data = serializers.serialize("json", userVal)
-    return JsonResponse(userVal, safe=False)
+    return JsonResponse(data, safe=False)
 
 def grafica1(request):
     registros = Registros.objects.filter(status=True).only('valor', 'creado')[:400]

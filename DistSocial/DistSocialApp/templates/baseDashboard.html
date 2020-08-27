@@ -148,6 +148,9 @@
 
     {% block scripts %}
     {% endblock %}
+    <script>
+        $("h4.user-name").html(sessionStorage.getItem('fullnameUser'));
+    </script>
     </body>
 
 </html>

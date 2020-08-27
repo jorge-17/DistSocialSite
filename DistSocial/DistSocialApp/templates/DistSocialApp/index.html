@@ -110,10 +110,11 @@
                 },
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data)
-                    if(data == true){                        
+                    console.log(data['userExist'])
+                    if(data['userExist'] == true){                        
                         //user = data[1]
                         //alert(user)
+                        sessionStorage.setItem('fullnameUser', data['fullnameUser'])
                         location.href = '{% url "DistSocial:grafica1" %}'
                     }
                 }
