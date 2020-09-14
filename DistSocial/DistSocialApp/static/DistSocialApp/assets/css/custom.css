@@ -1,0 +1,7 @@
+form.form-config div.row{
+    padding: 5px;
+}
+div#form-row-db,
+div#form-row-mqtt{
+    display: none;
+}

@@ -1,0 +1,33 @@
+{% extends 'baseDashboard.html' %}
+{% block body %}
+<div class="card" style="width: 28rem;">
+    <div class="card-body">
+        <h5 class="card-title">Grafica de historico</h5>
+        <p class="card-text">Grafica que muestra la información historica del análisis de videos.
+            <br>
+        No. de registros en BD:<b>{{ numRegistros }}</b>
+        </p>
+        <a href="{% url 'DistSocial:graficaH' %}" class="btn btn-primary">Ir a grafica</a>
+    </div>
+</div>
+<div class="card" style="width: 28rem;">
+    <div class="card-body">
+        <h5 class="card-title">Tabla de localidades</h5>
+        <p class="card-text">Muestra la tabla con todas las localidades registradas en BD.
+            <br>
+        No. de localidades en BD:<b>{{ numLocalidades }}</b>
+        </p>
+        <a href="{% url 'DistSocial:localidades' %}" class="btn btn-primary">Ir a tabla</a>
+    </div>
+</div>
+<div class="card" style="width: 28rem;">
+    <div class="card-body">
+        <h5 class="card-title">Tabla de camaras</h5>
+        <p class="card-text">Muestra la tabla con todas las camaras registradas en BD.
+            <br>
+        No. de camaras en BD:<b>{{ numCamaras }}</b>
+        </p>
+        <a href="{% url 'DistSocial:camaras' %}" class="btn btn-primary">Ir a tabla</a>
+    </div>
+</div>
+{% endblock %}

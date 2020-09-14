@@ -114,8 +114,9 @@
                     if(data['userExist'] == true){                        
                         //user = data[1]
                         //alert(user)
+                        sessionStorage.setItem('idOrg', data['idOrganizacion'])
                         sessionStorage.setItem('fullnameUser', data['fullnameUser'])
-                        location.href = '{% url "DistSocial:grafica1" %}'
+                        location.href = '{% url "DistSocial:home" %}'
                     }
                 }
             });

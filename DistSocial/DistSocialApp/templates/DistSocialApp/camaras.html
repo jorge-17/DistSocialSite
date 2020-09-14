@@ -25,23 +25,25 @@
                                 <th>Lat</th>
                                 <th>Lon</th>
                                 <th>Localidad</th>
+                                <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tbody-camaras">
                             {% if lista_camaras %}
-                            <tr>
-                                {% for camara in lista_camaras %}
+                            {% for camara in lista_camaras %}
+                            <tr>                                
                                 <td>{{ camara.id_CatCamara }}</td>
                                 <td>{{ camara.nombre }}</td>
                                 <td>{{ camara.ip }}</td>
                                 <td>{{ camara.latitud }}</td>
                                 <td>{{ camara.longitud }}</td>
                                 <td>{{ camara.id_CatLocalidad }}</td>
-                                {% endfor %}
+                                <td><a class="btn btn-info" href="{% url 'DistSocial:filtroGrafica' camara.id_CatCamara %}">Mostrar grafica</a></td>
                             </tr>
+                            {% endfor %}
                             {% else %}
                             <tr>
-                                <td colspan="6"> No polls are available.</td>
+                                <td colspan="6"> No hay camaras registradas .</td>
                             </tr>
                             {% endif %}
                         </tbody>

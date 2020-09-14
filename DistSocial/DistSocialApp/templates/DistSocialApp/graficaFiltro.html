@@ -18,9 +18,43 @@
             <div class="col-lg-6 mt-5">
                 <div class="card">
                     <div class="card-body">
+                        <table class="table">
+                            {% if infoCamara %}
+                            <tr>
+                                <td><b>Id Camara</b></td>
+                                <td>{{ infoCamara.id_CatCamara }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Nombre</b></td>
+                                <td>{{ infoCamara.nombre }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Direccion IP</b></td>
+                                <td>{{ infoCamara.ip }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Latitud</b></td>
+                                <td>{{ infoCamara.latitud }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Longitud</b></td>
+                                <td>{{ infoCamara.longitud}}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Localidad</b></td>
+                                <td>{{ infoCamara.id_CatLocalidad }}</td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5">
+                <div class="card">
+                    <div class="card-body">
                         <figure class="highcharts-figure">
                             <div id="container"></div>
-                        </figure>
+                        </figure>                        
                     </div>
                 </div>
             </div>
@@ -43,7 +77,7 @@
         console.log('loading...')
         var data = JSON.parse('{{ dataRegistros | escapejs }}');
         GraphLoad(data);
-    });
+    });    
 
     function GraphLoad(data) {
         AllData = [];
@@ -132,8 +166,7 @@
                 data: AllData
             }]
         });
-    }
+    }    
 
-    
 </script>
 {% endblock %}

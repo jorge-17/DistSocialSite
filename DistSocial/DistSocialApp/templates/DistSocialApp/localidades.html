@@ -25,22 +25,25 @@
                                 <th>Lat</th>
                                 <th>Lon</th>
                                 <th>Organizacion</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {% if lista_localidades %}
+                            {% for localidad in lista_localidades %}
                             <tr>
-                                {% for localidad in lista_localidades %}
+                                
                                 <td>{{ localidad.id_CatLocalidad }}</td>
                                 <td>{{ localidad.nombre }}</td>
                                 <td>{{ localidad.latitud }}</td>
                                 <td>{{ localidad.longitud }}</td>
                                 <td>{{ localidad.id_CatOrganizacion }}</td>
-                                {% endfor %}
+                                <td><a class="btn btn-info" href="{% url 'DistSocial:ListCamaras' localidad.id_CatLocalidad %}">Mostrar camaras</a></td>
                             </tr>
+                            {% endfor %}
                             {% else %}
                             <tr>
-                                <td colspan="5"> No polls are available.</td>
+                                <td colspan="5"> No hay localidades registradas. </td>
                             </tr>
                             {% endif %}
                         </tbody>

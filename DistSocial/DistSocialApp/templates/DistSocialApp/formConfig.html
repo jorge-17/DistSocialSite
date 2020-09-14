@@ -1,0 +1,278 @@
+{% extends 'baseDashboard.html' %}
+<!--------------------------------------------------------------------------->
+{% block head %}
+<title>Configuración de análisis de video</title>
+{% endblock %}
+<!--------------------------------------------------------------------------->
+{% block breadcrumbs %}
+<li><a href=""></a></li>
+<li><span> </span></li>
+{% endblock %}
+<!--------------------------------------------------------------------------->
+{% block body %}
+<div class="main-content">
+
+    <div class="main-content-inner">
+        <!-- bar chart start -->
+
+        <div class="row">
+            <div class="col-lg-6 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Configuración servidor Base de Datos</h5>
+                        <table class="table" id="tbl-BD">
+                            <tr>
+                                <th>Nombre del servidor</th>
+                                <th>Puerto</th>
+                                <th>Usuario</th>
+                                <th>Password</th>
+                                <th>Nombre de la base de datos</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tbody>
+                                {% if lista_config_db %}
+                                {% for info in lista_config_db %}
+                                <tr>
+
+                                    <td>{{ info.nombre }}</td>
+                                    <td>{{ info.puerto }}</td>
+                                    <td>{{ info.user }}</td>
+                                    <td>{{ info.pwd }}</td>
+                                    <td>{{ info.nombre_db }}</td>
+                                    <td><a class="btn btn-info" id="btnEditarBD">Editar</a></td>
+                                    <td><a class="btn btn-default disabled" id="btnSendBDInfo">Enviar a dispositivo</a></td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td colspan="5"> No hay datos registrados. </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="form-row-db">
+            <div class="col-lg-6 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Configuración servidor Base de Datos</h5>
+                        <form class="form-config" method="POST">
+                            {% csrf_token %}
+                            {% if lista_config_db %}
+                            {% for info in lista_config_db %}
+                            <div class="row">
+                                <div class="col-4">
+                                    <b id="labelForm">Id del servidor</b>
+                                </div>
+                                <div class="col-8">
+                                    <input disabled id="id_server_bd" value="{{ info.id_Server }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <b id="labelForm">Nombre del servidor o direccion IP</b>
+                                </div>
+                                <div class="col-8">
+                                    <input id="server_name" value="{{ info.nombre }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <b id="labelForm">Puerto</b>
+                                </div>
+                                <div class="col-8">
+                                    <input id="port" value="{{ info.puerto }}" class="form-control" type="number">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <b id="labelForm">Usuario</b>
+                                </div>
+                                <div class="col-8">
+                                    <input id="user" value="{{ info.user }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <b id="labelForm">Password</b>
+                                </div>
+                                <div class="col-8">
+                                    <input id="pass" value="{{ info.pwd }}" class="form-control" type="password">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <b id="labelForm">Nombre de base de datos</b>
+                                </div>
+                                <div class="col-8">
+                                    <input id="database_name" value="{{ info.nombre_db }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <div class="row">
+                                <button type="submit" id="btnSave_database" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Configuración servidor Base de Datos</h5>
+                        <table class="table" id="tbl-BD">
+                            <tr>
+                                <th>Nombre del servidor</th>
+                                <th>Puerto</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tbody>
+                                {% if lista_config_mqtt %}
+                                {% for info in lista_config_mqtt %}
+                                <tr>
+
+                                    <td>{{ info.nombre }}</td>
+                                    <td>{{ info.puerto }}</td>
+                                    <td><a class="btn btn-info" id="btnEditarMQTT">Editar</a></td>
+                                    <td><a class="btn btn-default disabled" id="btnSendMQTTInfo">Enviar a dispositivo</a></td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <tr>
+                                    <td colspan="5"> No hay datos registrados. </td>
+                                </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="form-row-mqtt">
+            <div class="col-lg-6 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Configuración servidor MQTT</h5>
+                        <form class="form-config" method="POST">
+                            {% csrf_token %}
+                            {% if lista_config_mqtt %}
+                            {% for info in lista_config_mqtt %}
+                            <div class="row">
+                                <div class="col-4">
+                                    <b id="labelForm">Id del servidor</b>
+                                </div>
+                                <div class="col-8">
+                                    <input disabled id="id_server_mqtt" value="{{ info.id_Server }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <b id="labelForm">Nombre del servidor o direccion IP</b>
+                                </div>
+                                <div class="col-8">
+                                    <input id="server_name_mqtt" value="{{ info.nombre }}" class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <b id="labelForm">Puerto</b>
+                                </div>
+                                <div class="col-8">
+                                    <input id="port_mqtt" value="{{ info.puerto }}" class="form-control" type="number">
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <div class="row">
+                                <button type="submit" id="btnSave_mqtt" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- bar chart end -->
+    </div>
+</div>
+
+{% endblock %}
+<!--------------------------------------------------------------------------->
+{% block scripts %}
+<script>
+    $("#btnSave_database").on('click', function () {
+        var idServer = $("#id_server_bd").val();
+        var server_name = $("#server_name").val();
+        var port = $("#port").val();
+        var user = $("#user").val();
+        var pass = $("#pass").val();
+        var database_name = $("#database_name").val();
+        var csrftoken = Cookies.get('csrftoken');
+        $.ajax({
+            url: '{% url "DistSocial:saveConfig" %}',
+            method: 'POST',
+            data: {
+                'idServer': idServer,
+                'server_name': server_name,
+                'port': port,
+                'user': user,
+                'pass': pass,
+                'database_name': database_name,
+                'tipo': 'bd',
+                'csrfmiddlewaretoken': csrftoken
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert('Exito.')
+            }
+        });
+    });
+
+    $("#btnSave_mqtt").on('click', function () {
+        var idServer = $("#id_server_mqtt").val();
+        var server_name = $("#server_name_mqtt").val();
+        var port = $("#port_mqtt").val();
+        var user = "";
+        var pass = "";
+        var database_name = "";
+        var csrftoken = Cookies.get('csrftoken');
+        $.ajax({
+            url: '{% url "DistSocial:saveConfig" %}',
+            method: 'POST',
+            data: {
+                'idServer': idServer,
+                'server_name': server_name,
+                'port': port,
+                'user': user,
+                'pass': pass,
+                'database_name': database_name,
+                'tipo': 'mqtt',
+                'csrfmiddlewaretoken': csrftoken
+            },
+            dataType: 'json',
+            success: function (data) {
+                alert('Exito.')
+            }
+        });
+    });
+
+    $("#btnEditarBD").on('click', function () {
+        $("#form-row-db").css('display', 'block');
+    });
+
+    $("#btnEditarMQTT").on('click', function () {
+        $("#form-row-mqtt").css('display', 'block');
+    });
+
+</script>
+{% endblock %}

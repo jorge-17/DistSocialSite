@@ -68,3 +68,27 @@ class Registros(models.Model):
     nombre = models.CharField(max_length=255, null=True)
     def getDateValue(self):
         return self.valor, self.creado
+
+class CatDispositivos(models.Model):
+    id_CatDispositivo = models.AutoField(primary_key=True)
+    status = models.BooleanField(null=True)
+    mac = models.CharField(null=True, max_length=255)
+    creado = models.DateTimeField(default=timezone.now, null=True)
+
+class Configuraciones(models.Model):
+    id_Configuracion = models.AutoField(primary_key=True)
+    status = models.BooleanField(null=True)
+    nombre = models.CharField(null=True, max_length=100)
+    valor =  models.CharField(null=True, max_length=100)
+    tipo = models.CharField(null=True, max_length=10)
+
+
+class Servers(models.Model):
+    id_Server = models.AutoField(primary_key=True)
+    status = models.BooleanField(null=True)
+    nombre = models.CharField(null=True, max_length=100)
+    puerto = models.IntegerField(null=True)
+    user = models.CharField(null=True, max_length=100)
+    pwd = models.CharField(null=True, max_length=100)
+    nombre_db = models.CharField(null=True, max_length=100)    
+    tipo = models.CharField(null=True, max_length=10)

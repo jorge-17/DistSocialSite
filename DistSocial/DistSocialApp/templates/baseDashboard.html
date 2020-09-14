@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{% static 'DistSocialApp/assets/css/responsive.css' %}">
     <!-- modernizr css -->
     <script src="{% static 'DistSocialApp/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="{% static 'DistSocialApp/assets/css/custom.css' %}">
     {% block head %}    
     <title>Dashboard</title>    
     {% endblock %}
@@ -50,9 +51,10 @@
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
                                 <ul class="collapse">
-                                    <li><a href="{% url 'DistSocial:grafica1' %}">Grafica Historica</a></li>
+                                    <li><a href="{% url 'DistSocial:graficaH' %}">Grafica Historica</a></li>
                                     <li><a href="{% url 'DistSocial:camaras' %}">Lista general de camaras</a></li>
                                     <li><a href="{% url 'DistSocial:localidades' %}">Lista general de localidades</a></li>
+                                    <li><a href="{% url 'DistSocial:formConfigRemote' %}">Formulario de configuracion remota</a></li>
                                 </ul>
                             </li>                            
                         </ul>
@@ -140,11 +142,7 @@
     <script src="{% static 'DistSocialApp/assets/js/plugins.js' %}"></script>
     <script src="{% static 'DistSocialApp/assets/js/scripts.js' %}"></script>
 
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    
 
     {% block scripts %}
     {% endblock %}
